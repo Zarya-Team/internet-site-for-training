@@ -1,0 +1,23 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_site_lab
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: neko
+      POSTGRES_PASSWORD: 1313
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:
