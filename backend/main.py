@@ -1,7 +1,7 @@
 import fastapi
 
-from scr.settings.const import BASE_URL
-from scr.apps.service.router import router
+from src.settings.const import BASE_URL
+from src.apps.service.router import router
 
 app = fastapi.FastAPI()
 appv1 = fastapi.FastAPI()

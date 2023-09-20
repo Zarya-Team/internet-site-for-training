@@ -19,12 +19,12 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-    op.execute("INSERT INTO your_table_name (column1, column2) VALUES ('value1', 'value2')")
-    op.execute("INSERT INTO your_table_name (column1, column2) VALUES ('value3', 'value4')")
+    op.execute("INSERT INTO countries (name, history) VALUES ('Россия', 'бля ебать там блины пездатые')")
+    op.execute("INSERT INTO countries (name, history) VALUES ('Япония', 'Нехера кроме риса')")
     # Добавьте другие SQL-запросы по мере необходимости
 
 
 def downgrade() -> None:
-    op.execute("DELETE FROM your_table_name WHERE column1 = 'value1'")
-    op.execute("DELETE FROM your_table_name WHERE column1 = 'value3'")
+    op.execute("DELETE FROM countries WHERE name = 'Россия'")
+    op.execute("DELETE FROM countries WHERE name = 'Япония'")
     # Добавьте соответствующие SQL-запросы для отката миграции
