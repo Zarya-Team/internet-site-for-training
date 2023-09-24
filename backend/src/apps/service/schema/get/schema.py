@@ -19,4 +19,13 @@ class CountriesSchema(BaseModel):
 class CategoriesSchema(BaseModel):
     id: int
     name: str
+    
+class IngredientsRecipeSchema(BaseModel):
+    name:str
+    weight: float
 
+class RecipeIngredientsSchema(BaseModel):
+    title: str
+    desc: str
+    ingredients: List[IngredientsRecipeSchema]
+    

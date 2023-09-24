@@ -10,12 +10,12 @@ class Recipes(Base):
     
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     title: Mapped[str] = mapped_column(sa.String(50))
-    desc: Mapped[str] = mapped_column(sa.String(500))
+    description: Mapped[str] = mapped_column(sa.String(500))
     countries_id: Mapped[int] = mapped_column(sa.ForeignKey("countries.id"))
     categories_id: Mapped[int] = mapped_column(sa.ForeignKey("categories.id"))
-    
+
     def to_read_model(self) -> RecipesSchema:
-        return RecipesSchema(id=self.id, title=self.title, desc=self.desc)
+        return RecipesSchema(id=self.id, title=self.title, desc=self.description)
 
   
 class Countries(Base):
@@ -54,6 +54,6 @@ class RecipesIngredients(Base):
     
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     weight: Mapped[float] = mapped_column(sa.Float())
-    recipe_id: Mapped[int] = mapped_column(sa.ForeignKey("Recipes.id"))
+    recipe_id: Mapped[int] = mapped_column(sa.ForeignKey("recipes.id"))
     ingredients_id: Mapped[int] = mapped_column(sa.ForeignKey("ingredients.id"))
     
