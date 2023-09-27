@@ -1,10 +1,14 @@
 import fastapi
 
 from src.settings.const import BASE_URL
-from src.apps.service.router import router
+from src.apps.service.router import router, tags_metadata
 
 app = fastapi.FastAPI()
-appv1 = fastapi.FastAPI()
+appv1 = fastapi.FastAPI(
+    title="API для сайта с рецепами",
+    tags_metadata = tags_metadata,
+    version="0.0.1",
+)
 
 appv1.include_router(router)
 

@@ -1,176 +1,129 @@
-# FastAPI API Documentation
+# API для сайта с рецептами
 
-This is the documentation for the FastAPI API version 0.1.0. Below, you will find information about the available endpoints, request parameters, and response structures.
+Этот документ описывает API для сайта с рецептами. Версия API: 0.0.1
 
-## Table of Contents
+## Основная информация
 
-- [Base URL](#base-url)
-- [Endpoints](#endpoints)
-  - [Get All Countries](#get-all-countries)
-  - [Get All Recipes by Country](#get-all-recipes-by-country)
-  - [Get All Recipes by Category](#get-all-recipes-by-category)
-  - [Get All Categories](#get-all-categories)
-  - [Get Recipe by ID](#get-recipe-by-id)
-- [Data Structures](#data-structures)
-  - [CategoriesSchema](#categoriesschema)
-  - [CountriesSchema](#countriesschema)
-  - [HTTPValidationError](#httpvalidationerror)
-  - [IngredientsRecipeSchema](#ingredientsrecipeschema)
-  - [RecipeIngredientsSchema](#recipeingredientsschema)
-  - [RecipesSchema](#recipesschema)
-  - [ValidationError](#validationerror)
+- **Базовый URL**: `/api/v1`
 
-## Base URL
+## Содержание
 
-The base URL for all API endpoints is `/api/v1`.
+- [Получение всех стран](#получение-всех-стран)
+- [Получение рецептов по стране](#получение-рецептов-по-стране)
+- [Получение рецептов по категориям](#получение-рецептов-по-категориям)
+- [Получение всех категорий](#получение-всех-категорий)
+- [Получение всей информации о рецепте](#получение-всей-информации-о-рецепте)
 
-## Endpoints
+## Получение всех стран
 
-### Get All Countries
+- **URL**: `/countries`
+- **Метод**: `GET`
+- **Описание**: Получение всех стран
+- **Операция**: `countries_get_all_countries_get`
+- **Ответ**: `200` - Успешный ответ
+  - Тип данных: JSON
+  - Схема данных: [Response Countries Get All Countries Get](#response-countries-get-all-countries-get)
 
-- **Summary:** Countries Get All
-- **Operation ID:** countries_get_all_countries_get
-- **HTTP Method:** GET
-- **Path:** `/countries`
-- **Responses:**
-  - 200: Successful Response
-    - Content:
-      - `application/json`
-        - Schema: [Response Countries Get All Countries Get](#recipecountriesgetall)
-        
-### Get All Recipes by Country
+## Получение рецептов по стране
 
-- **Summary:** Countries Recipes Get All
-- **Operation ID:** countries_recipes_get_all_countries_recipes_get
-- **HTTP Method:** GET
-- **Path:** `/countries_recipes`
-- **Parameters:**
-  - `countries_id` (query, required, integer)
-- **Responses:**
-  - 200: Successful Response
-    - Content:
-      - `application/json`
-        - Schema: [Response Countries Recipes Get All Countries Recipes Get](#recipecountriesrecipesgetall)
-  - 422: Validation Error
-    - Content:
-      - `application/json`
-        - Schema: [HTTPValidationError](#httpvalidationerror)
-        
-### Get All Recipes by Category
+- **URL**: `/countries_recipes`
+- **Метод**: `GET`
+- **Описание**: Получение рецептов по стране
+- **Операция**: `countries_recipes_get_all_countries_recipes_get`
+- **Параметры**:
+  - `countries_id` (обязательно) - ID страны
+  - `page` (необязательно) - Номер страницы, стандартно 1
+  - `per_page` (необязательно) - Количество выгружаемых рецептов, стандартно 5
+- **Ответ**: `200` - Успешный ответ
+  - Тип данных: JSON
+  - Схема данных: [Response Countries Recipes Get All Countries Recipes Get](#response-countries-recipes-get-all-countries-recipes-get)
+- **Ответ**: `422` - Ошибка валидации
+  - Тип данных: JSON
+  - Схема данных: [HTTPValidationError](#httpvalidationerror)
 
-- **Summary:** Categories Recipes Get All
-- **Operation ID:** categories_recipes_get_all_categories_recipes_get
-- **HTTP Method:** GET
-- **Path:** `/categories_recipes`
-- **Parameters:**
-  - `categories_id` (query, required, integer)
-- **Responses:**
-  - 200: Successful Response
-    - Content:
-      - `application/json`
-        - Schema: [Response Categories Recipes Get All Categories Recipes Get](#recipecategoriesrecipesgetall)
-  - 422: Validation Error
-    - Content:
-      - `application/json`
-        - Schema: [HTTPValidationError](#httpvalidationerror)
-        
-### Get All Categories
+## Получение рецептов по категориям
 
-- **Summary:** Categories Get All
-- **Operation ID:** сategories_get_all_categories_get
-- **HTTP Method:** GET
-- **Path:** `/categories`
-- **Responses:**
-  - 200: Successful Response
-    - Content:
-      - `application/json`
-        - Schema: [Response Categories Get All Categories Get](#recipecategoriesgetall)
-        
-### Get Recipe by ID
+- **URL**: `/categories_recipes`
+- **Метод**: `GET`
+- **Описание**: Получение рецептов по категориям
+- **Операция**: `categories_recipes_get_all_categories_recipes_get`
+- **Параметры**:
+  - `categories_id` (обязательно) - ID категории
+  - `page` (необязательно) - Номер страницы, стандартно 1
+  - `per_page` (необязательно) - Количество выгружаемых рецептов, стандартно 5
+- **Ответ**: `200` - Успешный ответ
+  - Тип данных: JSON
+  - Схема данных: [Response Categories Recipes Get All Categories Recipes Get](#response-categories-recipes-get-all-categories-recipes-get)
+- **Ответ**: `422` - Ошибка валидации
+  - Тип данных: JSON
+  - Схема данных: [HTTPValidationError](#httpvalidationerror)
 
-- **Summary:** Recipe Get
-- **Operation ID:** recipe_get_recipe_get
-- **HTTP Method:** GET
-- **Path:** `/recipe`
-- **Parameters:**
-  - `recipe_id` (query, required, integer)
-- **Responses:**
-  - 200: Successful Response
-    - Content:
-      - `application/json`
-        - Schema: [Response Recipe Get](#reciperecipeget)
-  - 422: Validation Error
-    - Content:
-      - `application/json`
-        - Schema: [HTTPValidationError](#httpvalidationerror)
+## Получение всех категорий
 
-## Data Structures
+- **URL**: `/categories`
+- **Метод**: `GET`
+- **Описание**: Получение всех категорий
+- **Операция**: `сategories_get_all_categories_get`
+- **Ответ**: `200` - Успешный ответ
+  - Тип данных: JSON
+  - Схема данных: [Response Сategories Get All Categories Get](#response-сategories-get-all-categories-get)
+
+## Получение всей информации о рецепте
+
+- **URL**: `/recipe`
+- **Метод**: `GET`
+- **Описание**: Получение всей информации о рецепте
+- **Операция**: `recipe_get_recipe_get`
+- **Параметры**:
+  - `recipe_id` (обязательно) - ID рецепта
+- **Ответ**: `200` - Успешный ответ
+  - Тип данных: JSON
+  - Схема данных: [RecipeIngredientsSchema](#recipeingredientsschema)
+- **Ответ**: `422` - Ошибка валидации
+  - Тип данных: JSON
+  - Схема данных: [HTTPValidationError](#httpvalidationerror)
+
+## Схемы данных
 
 ### CategoriesSchema
 
-```json
-{
-  "id": integer,
-  "name": string
-}
-```
+- `id` (integer) - ID
+- `name` (string) - Название
+- **Требуемые поля**: `id`, `name`
 
 ### CountriesSchema
-```json
-{
-  "id": integer,
-  "name": string,
-  "history": string
-}
-```
+
+- `id` (integer) - ID
+- `name` (string) - Название
+- `history` (string) - История
+- **Требуемые поля**: `id`, `name`, `history`
 
 ### HTTPValidationError
-```json
-{
-  "detail": [
-    {
-      "loc": [string or integer],
-      "msg": string,
-      "type": string
-    }
-  ]
-}
-```
+
+- `detail` (array) - Массив ошибок валидации
+  - `loc` (string или integer) - Местоположение ошибки
+  - `msg` (string) - Сообщение об ошибке
+  - `type` (string) - Тип ошибки
+- **Требуемые поля**: `loc`, `msg`, `type`
 
 ### IngredientsRecipeSchema
-```json
-{
-  "name": string,
-  "weight": number
-}
-```
+
+- `name` (string) - Название
+- `weight` (number) - Вес
+- **Требуемые поля**: `name`, `weight`
 
 ### RecipeIngredientsSchema
-```json
-{
-  "title": string,
-  "desc": string,
-  "ingredients": [IngredientsRecipeSchema]
-}
-```
+
+- `title` (string) - Заголовок
+- `desc` (string) - Описание
+- `ingredients` (array) - Массив ингредиентов
+  - Схема данных: [IngredientsRecipeSchema](#ingredientsrecipeschema)
+- **Требуемые поля**: `title`, `desc`, `ingredients`
 
 ### RecipesSchema
-```json
-{
-  "id": integer,
-  "title": string,
-  "desc": string
-}
-```
 
-### ValidationError
-```json
-{
-  "loc": [string or integer],
-  "msg": string,
-  "type": string
-}
-```
+- `id` (integer) - ID
+- `title` (string) - Заголовок
+- `desc` (string) - Описание
+- **Требуемые поля**: `id`, `title`, `desc`
 
-
-Please note that this documentation provides an overview of the API endpoints and data structures. For more detailed information on request and response formats, refer to the provided JSON schema references.

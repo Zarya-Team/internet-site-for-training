@@ -20,3 +20,6 @@
 
 ## Стек техналогий
 [Стек](./technical_specification/stack.md)
+
+## Документация API
+[Документация](./backend/readme.md)
