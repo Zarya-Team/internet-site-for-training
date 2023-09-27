@@ -24,4 +24,6 @@
 ## Документация API
 [Документация](./backend/readme.md)
 
-`#0969DA`
+- [x] #739
+- [ ] https://github.com/octo-org/octo-repo/issues/740
+- [ ] Add delight to the experience when all tasks are complete :tada:
