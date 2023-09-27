@@ -8,18 +8,18 @@
 
 ## Гласарик для проекта
 
-![Гласарик](./technical_specification/glossary.md)
+[Гласарик](./technical_specification/glossary.md)
 
 ## Кратное описание страниц сайта
 
-![Страницы](./technical_specification/site_pages.md)
+[Страницы](./technical_specification/site_pages.md)
 
 ## Сценарий использования и целевая аудитория
 
-![Фаил](./technical_specification/general_requirements.md)
+[Фаил](./technical_specification/general_requirements.md)
 
 ## Стек техналогий
-![Стек](./technical_specification/stack.md)
+[Стек](./technical_specification/stack.md)
 
 ## Документация API
-![Документация](./backend/readme.md)
+[Документация](./backend/readme.md)
