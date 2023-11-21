@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
 async_engine = create_async_engine(
-    "postgresql+asyncpg://neko:1313@localhost/postgres",
+    "postgresql+asyncpg://neko:1313@postgres_sites:5432/postgres",
     echo=True,
     future=True,
     poolclass=NullPool,

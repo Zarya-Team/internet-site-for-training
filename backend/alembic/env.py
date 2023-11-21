@@ -13,7 +13,7 @@ from src.apps.model import Base
 # access to the values within the .ini file in use.
 config = context.config
 
-config.set_main_option("sqlalchemy.url", "postgresql+asyncpg://neko:1313@localhost/postgres")
+config.set_main_option("sqlalchemy.url", "postgresql+asyncpg://neko:1313@postgres_sites/postgres")
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.

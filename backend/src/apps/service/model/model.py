@@ -9,8 +9,8 @@ class Recipes(Base):
     __tablename__ = "recipes"
     
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    title: Mapped[str] = mapped_column(sa.String(50))
-    description: Mapped[str] = mapped_column(sa.String(500))
+    title: Mapped[str] = mapped_column(sa.String(150))
+    description: Mapped[str] = mapped_column(sa.String(1500))
     countries_id: Mapped[int] = mapped_column(sa.ForeignKey("countries.id"))
     categories_id: Mapped[int] = mapped_column(sa.ForeignKey("categories.id"))
 
@@ -22,8 +22,8 @@ class Countries(Base):
     __tablename__ = "countries"
     
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    name: Mapped[str] = mapped_column(sa.String(50))
-    history: Mapped[str] = mapped_column(sa.String(500))
+    name: Mapped[str] = mapped_column(sa.String(150))
+    history: Mapped[str] = mapped_column(sa.String(1500))
     
     def to_read_model(self) -> CountriesSchema:
         return CountriesSchema(id=self.id, name=self.name, history=self.history)
@@ -33,7 +33,7 @@ class Categories(Base):
     __tablename__ = "categories"
     
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    name: Mapped[str] = mapped_column(sa.String(50))
+    name: Mapped[str] = mapped_column(sa.String(150))
     
     def to_read_model(self) -> CategoriesSchema:
         return CategoriesSchema(id=self.id, name=self.name)
@@ -43,7 +43,7 @@ class Ingredients(Base):
     __tablename__ = "ingredients"
     
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
-    name: Mapped[str] = mapped_column(sa.String(50))
+    name: Mapped[str] = mapped_column(sa.String(150))
     
     def to_read_model(self) -> IngredientsSchema:
         return IngredientsSchema(id=self.id, name=self.name)

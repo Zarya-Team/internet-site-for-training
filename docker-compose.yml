@@ -16,6 +16,18 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+  
+  backend:
+    container_name: backend
+    build: 
+      dockerfile: Dockerfile
+      context: ./backend
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - postgres
+    ports:
+      - "5000:5000"
 
   pgadmin:
     image: dpage/pgadmin4
