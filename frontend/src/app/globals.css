@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background-image: url('/assorted-plant-leaves-on-table 2.png');
+  background-size: cover;
+}
+
+@media (prefers-color-scheme: dark) {
+}
+
+body {}
