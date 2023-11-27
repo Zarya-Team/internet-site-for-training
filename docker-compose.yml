@@ -16,6 +16,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
+    depends_on:
+      - backend
   
   backend:
     container_name: backend
@@ -39,6 +41,17 @@ services:
       PGADMIN_DEFAULT_PASSWORD: 1313
     volumes:
       - pgadmin_data:/var/lib/pgadmin
+  
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - frontend
+      - backend
 
 
 volumes:
