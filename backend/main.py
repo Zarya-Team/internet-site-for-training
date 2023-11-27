@@ -5,7 +5,7 @@ from src.apps.service.router import router, tags_metadata
 
 app = fastapi.FastAPI()
 appv1 = fastapi.FastAPI(
-    title="API для сайта с рецепами",
+    title="OpenAPI",
     tags_metadata = tags_metadata,
     version="0.0.1",
 )
