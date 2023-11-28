@@ -4,8 +4,25 @@ from src.settings.const import BASE_URL
 from src.apps.service.router import router, tags_metadata
 from src.apps.utils import auth_backend, current_active_user, fastapi_users
 from src.apps.schema import UserCreate, UserRead, UserUpdate
+from fastapi.middleware.cors import CORSMiddleware
 
 app = fastapi.FastAPI()
+
+origins = [
+    "http://127.0.0.1",
+    "http://127.0.0.1:3000",
+    "http://localhost",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 appv1 = fastapi.FastAPI(
     title="OpenAPI",
     tags_metadata = tags_metadata,

@@ -239,7 +239,7 @@ export const fetchсategoriesGetAllCategoriesGet = (
     {}
   >({ url: "/categories", method: "get", ...variables, signal });
 
-export const useCategoriesAllCategoriesGet = <
+export const useCategoriesGetAllCategoriesGet = <
   TData = сategoriesGetAllCategoriesGetResponse
 >(
   variables: сategoriesGetAllCategoriesGetVariables,
@@ -330,6 +330,678 @@ export const useRecipeGetRecipeGet = <TData = Schemas.RecipeIngredientsSchema>(
   });
 };
 
+export type AuthJwtLoginAuthJwtLoginPostError = Fetcher.ErrorWrapper<
+  | {
+      status: 400;
+      payload: Schemas.ErrorModel;
+    }
+  | {
+      status: 422;
+      payload: Schemas.HTTPValidationError;
+    }
+>;
+
+export type AuthJwtLoginAuthJwtLoginPostVariables =
+  OpenApIContext["fetcherOptions"];
+
+export const fetchAuthJwtLoginAuthJwtLoginPost = (
+  variables: AuthJwtLoginAuthJwtLoginPostVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<void, AuthJwtLoginAuthJwtLoginPostError, undefined, {}, {}, {}>({
+    url: "/auth/jwt/login",
+    method: "post",
+    ...variables,
+    signal,
+  });
+
+export const useAuthJwtLoginAuthJwtLoginPost = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      void,
+      AuthJwtLoginAuthJwtLoginPostError,
+      AuthJwtLoginAuthJwtLoginPostVariables
+    >,
+    "mutationFn"
+  >
+) => {
+  const { fetcherOptions } = useOpenApIContext();
+  return reactQuery.useMutation<
+    void,
+    AuthJwtLoginAuthJwtLoginPostError,
+    AuthJwtLoginAuthJwtLoginPostVariables
+  >({
+    mutationFn: (variables: AuthJwtLoginAuthJwtLoginPostVariables) =>
+      fetchAuthJwtLoginAuthJwtLoginPost({ ...fetcherOptions, ...variables }),
+    ...options,
+  });
+};
+
+export type AuthJwtLogoutAuthJwtLogoutPostError =
+  Fetcher.ErrorWrapper<undefined>;
+
+export type AuthJwtLogoutAuthJwtLogoutPostVariables =
+  OpenApIContext["fetcherOptions"];
+
+export const fetchAuthJwtLogoutAuthJwtLogoutPost = (
+  variables: AuthJwtLogoutAuthJwtLogoutPostVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    void,
+    AuthJwtLogoutAuthJwtLogoutPostError,
+    undefined,
+    {},
+    {},
+    {}
+  >({ url: "/auth/jwt/logout", method: "post", ...variables, signal });
+
+export const useAuthJwtLogoutAuthJwtLogoutPost = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      void,
+      AuthJwtLogoutAuthJwtLogoutPostError,
+      AuthJwtLogoutAuthJwtLogoutPostVariables
+    >,
+    "mutationFn"
+  >
+) => {
+  const { fetcherOptions } = useOpenApIContext();
+  return reactQuery.useMutation<
+    void,
+    AuthJwtLogoutAuthJwtLogoutPostError,
+    AuthJwtLogoutAuthJwtLogoutPostVariables
+  >({
+    mutationFn: (variables: AuthJwtLogoutAuthJwtLogoutPostVariables) =>
+      fetchAuthJwtLogoutAuthJwtLogoutPost({ ...fetcherOptions, ...variables }),
+    ...options,
+  });
+};
+
+
+export type RegisterRegisterAuthRegisterPostError = Fetcher.ErrorWrapper<
+  | {
+      status: 400;
+      payload: Schemas.ErrorModel;
+    }
+  | {
+      status: 422;
+      payload: Schemas.HTTPValidationError;
+    }
+>;
+
+export type RegisterRegisterAuthRegisterPostVariables = {
+  body: Schemas.UserCreate;
+} & OpenApIContext["fetcherOptions"];
+
+export const fetchRegisterRegisterAuthRegisterPost = (
+  variables: RegisterRegisterAuthRegisterPostVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    Schemas.UserRead,
+    RegisterRegisterAuthRegisterPostError,
+    Schemas.UserCreate,
+    {},
+    {},
+    {}
+  >({ url: "/auth/register", method: "post", ...variables, signal });
+
+export const useRegisterRegisterAuthRegisterPost = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      Schemas.UserRead,
+      RegisterRegisterAuthRegisterPostError,
+      RegisterRegisterAuthRegisterPostVariables
+    >,
+    "mutationFn"
+  >
+) => {
+  const { fetcherOptions } = useOpenApIContext();
+  return reactQuery.useMutation<
+    Schemas.UserRead,
+    RegisterRegisterAuthRegisterPostError,
+    RegisterRegisterAuthRegisterPostVariables
+  >({
+    mutationFn: (variables: RegisterRegisterAuthRegisterPostVariables) =>
+      fetchRegisterRegisterAuthRegisterPost({
+        ...fetcherOptions,
+        ...variables,
+      }),
+    ...options,
+  });
+};
+
+export type ResetForgotPasswordAuthForgotPasswordPostError =
+  Fetcher.ErrorWrapper<{
+    status: 422;
+    payload: Schemas.HTTPValidationError;
+  }>;
+
+export type ResetForgotPasswordAuthForgotPasswordPostVariables = {
+  body: Schemas.BodyResetForgotPasswordAuthForgotPasswordPost;
+} & OpenApIContext["fetcherOptions"];
+
+export const fetchResetForgotPasswordAuthForgotPasswordPost = (
+  variables: ResetForgotPasswordAuthForgotPasswordPostVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    void,
+    ResetForgotPasswordAuthForgotPasswordPostError,
+    Schemas.BodyResetForgotPasswordAuthForgotPasswordPost,
+    {},
+    {},
+    {}
+  >({ url: "/auth/forgot-password", method: "post", ...variables, signal });
+
+export const useResetForgotPasswordAuthForgotPasswordPost = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      void,
+      ResetForgotPasswordAuthForgotPasswordPostError,
+      ResetForgotPasswordAuthForgotPasswordPostVariables
+    >,
+    "mutationFn"
+  >
+) => {
+  const { fetcherOptions } = useOpenApIContext();
+  return reactQuery.useMutation<
+    void,
+    ResetForgotPasswordAuthForgotPasswordPostError,
+    ResetForgotPasswordAuthForgotPasswordPostVariables
+  >({
+    mutationFn: (
+      variables: ResetForgotPasswordAuthForgotPasswordPostVariables
+    ) =>
+      fetchResetForgotPasswordAuthForgotPasswordPost({
+        ...fetcherOptions,
+        ...variables,
+      }),
+    ...options,
+  });
+};
+
+export type ResetResetPasswordAuthResetPasswordPostError = Fetcher.ErrorWrapper<
+  | {
+      status: 400;
+      payload: Schemas.ErrorModel;
+    }
+  | {
+      status: 422;
+      payload: Schemas.HTTPValidationError;
+    }
+>;
+
+export type ResetResetPasswordAuthResetPasswordPostVariables = {
+  body: Schemas.BodyResetResetPasswordAuthResetPasswordPost;
+} & OpenApIContext["fetcherOptions"];
+
+export const fetchResetResetPasswordAuthResetPasswordPost = (
+  variables: ResetResetPasswordAuthResetPasswordPostVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    void,
+    ResetResetPasswordAuthResetPasswordPostError,
+    Schemas.BodyResetResetPasswordAuthResetPasswordPost,
+    {},
+    {},
+    {}
+  >({ url: "/auth/reset-password", method: "post", ...variables, signal });
+
+export const useResetResetPasswordAuthResetPasswordPost = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      void,
+      ResetResetPasswordAuthResetPasswordPostError,
+      ResetResetPasswordAuthResetPasswordPostVariables
+    >,
+    "mutationFn"
+  >
+) => {
+  const { fetcherOptions } = useOpenApIContext();
+  return reactQuery.useMutation<
+    void,
+    ResetResetPasswordAuthResetPasswordPostError,
+    ResetResetPasswordAuthResetPasswordPostVariables
+  >({
+    mutationFn: (variables: ResetResetPasswordAuthResetPasswordPostVariables) =>
+      fetchResetResetPasswordAuthResetPasswordPost({
+        ...fetcherOptions,
+        ...variables,
+      }),
+    ...options,
+  });
+};
+
+export type VerifyRequestTokenAuthRequestVerifyTokenPostError =
+  Fetcher.ErrorWrapper<{
+    status: 422;
+    payload: Schemas.HTTPValidationError;
+  }>;
+
+export type VerifyRequestTokenAuthRequestVerifyTokenPostVariables = {
+  body: Schemas.BodyVerifyRequestTokenAuthRequestVerifyTokenPost;
+} & OpenApIContext["fetcherOptions"];
+
+export const fetchVerifyRequestTokenAuthRequestVerifyTokenPost = (
+  variables: VerifyRequestTokenAuthRequestVerifyTokenPostVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    void,
+    VerifyRequestTokenAuthRequestVerifyTokenPostError,
+    Schemas.BodyVerifyRequestTokenAuthRequestVerifyTokenPost,
+    {},
+    {},
+    {}
+  >({
+    url: "/auth/request-verify-token",
+    method: "post",
+    ...variables,
+    signal,
+  });
+
+export const useVerifyRequestTokenAuthRequestVerifyTokenPost = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      void,
+      VerifyRequestTokenAuthRequestVerifyTokenPostError,
+      VerifyRequestTokenAuthRequestVerifyTokenPostVariables
+    >,
+    "mutationFn"
+  >
+) => {
+  const { fetcherOptions } = useOpenApIContext();
+  return reactQuery.useMutation<
+    void,
+    VerifyRequestTokenAuthRequestVerifyTokenPostError,
+    VerifyRequestTokenAuthRequestVerifyTokenPostVariables
+  >({
+    mutationFn: (
+      variables: VerifyRequestTokenAuthRequestVerifyTokenPostVariables
+    ) =>
+      fetchVerifyRequestTokenAuthRequestVerifyTokenPost({
+        ...fetcherOptions,
+        ...variables,
+      }),
+    ...options,
+  });
+};
+
+export type VerifyVerifyAuthVerifyPostError = Fetcher.ErrorWrapper<
+  | {
+      status: 400;
+      payload: Schemas.ErrorModel;
+    }
+  | {
+      status: 422;
+      payload: Schemas.HTTPValidationError;
+    }
+>;
+
+export type VerifyVerifyAuthVerifyPostVariables = {
+  body: Schemas.BodyVerifyVerifyAuthVerifyPost;
+} & OpenApIContext["fetcherOptions"];
+
+export const fetchVerifyVerifyAuthVerifyPost = (
+  variables: VerifyVerifyAuthVerifyPostVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    Schemas.UserRead,
+    VerifyVerifyAuthVerifyPostError,
+    Schemas.BodyVerifyVerifyAuthVerifyPost,
+    {},
+    {},
+    {}
+  >({ url: "/auth/verify", method: "post", ...variables, signal });
+
+export const useVerifyVerifyAuthVerifyPost = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      Schemas.UserRead,
+      VerifyVerifyAuthVerifyPostError,
+      VerifyVerifyAuthVerifyPostVariables
+    >,
+    "mutationFn"
+  >
+) => {
+  const { fetcherOptions } = useOpenApIContext();
+  return reactQuery.useMutation<
+    Schemas.UserRead,
+    VerifyVerifyAuthVerifyPostError,
+    VerifyVerifyAuthVerifyPostVariables
+  >({
+    mutationFn: (variables: VerifyVerifyAuthVerifyPostVariables) =>
+      fetchVerifyVerifyAuthVerifyPost({ ...fetcherOptions, ...variables }),
+    ...options,
+  });
+};
+
+export type UsersCurrentUserUsersMeGetError = Fetcher.ErrorWrapper<undefined>;
+
+export type UsersCurrentUserUsersMeGetVariables =
+  OpenApIContext["fetcherOptions"];
+
+export const fetchUsersCurrentUserUsersMeGet = (
+  variables: UsersCurrentUserUsersMeGetVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    Schemas.UserRead,
+    UsersCurrentUserUsersMeGetError,
+    undefined,
+    {},
+    {},
+    {}
+  >({ url: "/users/me", method: "get", ...variables, signal });
+
+export const useUsersCurrentUserUsersMeGet = <TData = Schemas.UserRead>(
+  variables: UsersCurrentUserUsersMeGetVariables,
+  options?: Omit<
+    reactQuery.UseQueryOptions<
+      Schemas.UserRead,
+      UsersCurrentUserUsersMeGetError,
+      TData
+    >,
+    "queryKey" | "queryFn" | "initialData"
+  >
+) => {
+  const { fetcherOptions, queryOptions, queryKeyFn } =
+    useOpenApIContext(options);
+  return reactQuery.useQuery<
+    Schemas.UserRead,
+    UsersCurrentUserUsersMeGetError,
+    TData
+  >({
+    queryKey: queryKeyFn({
+      path: "/users/me",
+      operationId: "usersCurrentUserUsersMeGet",
+      variables,
+    }),
+    queryFn: ({ signal }) =>
+      fetchUsersCurrentUserUsersMeGet(
+        { ...fetcherOptions, ...variables },
+        signal
+      ),
+    ...options,
+    ...queryOptions,
+  });
+};
+
+export type UsersPatchCurrentUserUsersMePatchError = Fetcher.ErrorWrapper<
+  | {
+      status: 400;
+      payload: Schemas.ErrorModel;
+    }
+  | {
+      status: 422;
+      payload: Schemas.HTTPValidationError;
+    }
+>;
+
+export type UsersPatchCurrentUserUsersMePatchVariables = {
+  body?: Schemas.UserUpdate;
+} & OpenApIContext["fetcherOptions"];
+
+export const fetchUsersPatchCurrentUserUsersMePatch = (
+  variables: UsersPatchCurrentUserUsersMePatchVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    Schemas.UserRead,
+    UsersPatchCurrentUserUsersMePatchError,
+    Schemas.UserUpdate,
+    {},
+    {},
+    {}
+  >({ url: "/users/me", method: "patch", ...variables, signal });
+
+export const useUsersPatchCurrentUserUsersMePatch = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      Schemas.UserRead,
+      UsersPatchCurrentUserUsersMePatchError,
+      UsersPatchCurrentUserUsersMePatchVariables
+    >,
+    "mutationFn"
+  >
+) => {
+  const { fetcherOptions } = useOpenApIContext();
+  return reactQuery.useMutation<
+    Schemas.UserRead,
+    UsersPatchCurrentUserUsersMePatchError,
+    UsersPatchCurrentUserUsersMePatchVariables
+  >({
+    mutationFn: (variables: UsersPatchCurrentUserUsersMePatchVariables) =>
+      fetchUsersPatchCurrentUserUsersMePatch({
+        ...fetcherOptions,
+        ...variables,
+      }),
+    ...options,
+  });
+};
+
+export type UsersUserUsersIdGetPathParams = {
+  id: string;
+};
+
+export type UsersUserUsersIdGetError = Fetcher.ErrorWrapper<{
+  status: 422;
+  payload: Schemas.HTTPValidationError;
+}>;
+
+export type UsersUserUsersIdGetVariables = {
+  pathParams: UsersUserUsersIdGetPathParams;
+} & OpenApIContext["fetcherOptions"];
+
+export const fetchUsersUserUsersIdGet = (
+  variables: UsersUserUsersIdGetVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    Schemas.UserRead,
+    UsersUserUsersIdGetError,
+    undefined,
+    {},
+    {},
+    UsersUserUsersIdGetPathParams
+  >({ url: "/users/{id}", method: "get", ...variables, signal });
+
+
+export const useUsersUserUsersIdGet = <TData = Schemas.UserRead>(
+  variables: UsersUserUsersIdGetVariables,
+  options?: Omit<
+    reactQuery.UseQueryOptions<
+      Schemas.UserRead,
+      UsersUserUsersIdGetError,
+      TData
+    >,
+    "queryKey" | "queryFn" | "initialData"
+  >
+) => {
+  const { fetcherOptions, queryOptions, queryKeyFn } =
+    useOpenApIContext(options);
+  return reactQuery.useQuery<Schemas.UserRead, UsersUserUsersIdGetError, TData>(
+    {
+      queryKey: queryKeyFn({
+        path: "/users/{id}",
+        operationId: "usersUserUsersIdGet",
+        variables,
+      }),
+      queryFn: ({ signal }) =>
+        fetchUsersUserUsersIdGet({ ...fetcherOptions, ...variables }, signal),
+      ...options,
+      ...queryOptions,
+    }
+  );
+};
+
+export type UsersPatchUserUsersIdPatchPathParams = {
+  id: string;
+};
+
+export type UsersPatchUserUsersIdPatchError = Fetcher.ErrorWrapper<
+  | {
+      status: 400;
+      payload: Schemas.ErrorModel;
+    }
+  | {
+      status: 422;
+      payload: Schemas.HTTPValidationError;
+    }
+>;
+
+export type UsersPatchUserUsersIdPatchVariables = {
+  body?: Schemas.UserUpdate;
+  pathParams: UsersPatchUserUsersIdPatchPathParams;
+} & OpenApIContext["fetcherOptions"];
+
+export const fetchUsersPatchUserUsersIdPatch = (
+  variables: UsersPatchUserUsersIdPatchVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    Schemas.UserRead,
+    UsersPatchUserUsersIdPatchError,
+    Schemas.UserUpdate,
+    {},
+    {},
+    UsersPatchUserUsersIdPatchPathParams
+  >({ url: "/users/{id}", method: "patch", ...variables, signal });
+
+export const useUsersPatchUserUsersIdPatch = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      Schemas.UserRead,
+      UsersPatchUserUsersIdPatchError,
+      UsersPatchUserUsersIdPatchVariables
+    >,
+    "mutationFn"
+  >
+) => {
+  const { fetcherOptions } = useOpenApIContext();
+  return reactQuery.useMutation<
+    Schemas.UserRead,
+    UsersPatchUserUsersIdPatchError,
+    UsersPatchUserUsersIdPatchVariables
+  >({
+    mutationFn: (variables: UsersPatchUserUsersIdPatchVariables) =>
+      fetchUsersPatchUserUsersIdPatch({ ...fetcherOptions, ...variables }),
+    ...options,
+  });
+};
+
+export type UsersDeleteUserUsersIdDeletePathParams = {
+  id: string;
+};
+
+export type UsersDeleteUserUsersIdDeleteError = Fetcher.ErrorWrapper<{
+  status: 422;
+  payload: Schemas.HTTPValidationError;
+}>;
+
+export type UsersDeleteUserUsersIdDeleteVariables = {
+  pathParams: UsersDeleteUserUsersIdDeletePathParams;
+} & OpenApIContext["fetcherOptions"];
+
+export const fetchUsersDeleteUserUsersIdDelete = (
+  variables: UsersDeleteUserUsersIdDeleteVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    undefined,
+    UsersDeleteUserUsersIdDeleteError,
+    undefined,
+    {},
+    {},
+    UsersDeleteUserUsersIdDeletePathParams
+  >({ url: "/users/{id}", method: "delete", ...variables, signal });
+
+export const useUsersDeleteUserUsersIdDelete = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      undefined,
+      UsersDeleteUserUsersIdDeleteError,
+      UsersDeleteUserUsersIdDeleteVariables
+    >,
+    "mutationFn"
+  >
+) => {
+  const { fetcherOptions } = useOpenApIContext();
+  return reactQuery.useMutation<
+    undefined,
+    UsersDeleteUserUsersIdDeleteError,
+    UsersDeleteUserUsersIdDeleteVariables
+  >({
+    mutationFn: (variables: UsersDeleteUserUsersIdDeleteVariables) =>
+      fetchUsersDeleteUserUsersIdDelete({ ...fetcherOptions, ...variables }),
+    ...options,
+  });
+};
+
+export type TokenRequestBody = {
+  token:string
+}
+
+export type TokenRequestError = Fetcher.ErrorWrapper<undefined>;
+
+export type TokenResponse = {
+  id: string,
+  email: string,
+  is_active: boolean,
+  is_superuser: boolean,
+  is_verified: boolean,
+}
+
+export type TokenVariables = {
+  body: TokenRequestBody
+} & OpenApIContext['fetcherOptions'];
+
+export const fetchToken = (
+  variables: TokenVariables,
+  signal?: AbortSignal,
+  ) => openApIFetch<
+  TokenResponse,
+  TokenRequestError,
+  TokenRequestBody,
+  {},
+  {},
+  {}
+  >({method:'post',url:'/auth/verify',...variables,signal})
+
+export const useToken = <TData = TokenResponse> (
+  variables: TokenVariables,
+  options?: Omit<
+    reactQuery.UseQueryOptions<
+      TokenResponse,
+      TokenRequestError,
+      TData
+    >,
+    'queryKey' | 'queryFn' | 'initialData'
+  >
+) => {
+  const {fetcherOptions, queryKeyFn, queryOptions} = useOpenApIContext(options)
+  return reactQuery.useQuery<
+  TokenResponse,
+  TokenRequestError,
+  TData
+>({
+  queryFn: ({ signal }) =>
+    fetchToken({ ...fetcherOptions, ...variables }, signal),
+  queryKey: queryKeyFn({
+    operationId: 'Verify',
+    path: '/auth/verify',
+    variables,
+  }),
+  ...options,
+  ...queryOptions,
+});
+}
+
+
 export type QueryOperation =
   | {
       path: "/countries";
@@ -355,4 +1027,19 @@ export type QueryOperation =
       path: "/recipe";
       operationId: "recipeGetRecipeGet";
       variables: RecipeGetRecipeGetVariables;
+    }
+  | {
+      path: "/users/me";
+      operationId: "usersCurrentUserUsersMeGet";
+      variables: UsersCurrentUserUsersMeGetVariables;
+    }
+  | {
+      path: '/auth/verify';
+      operationId: 'Verify';
+      variables: TokenVariables;
+    }
+  | {
+      path: "/users/{id}";
+      operationId: "usersUserUsersIdGet";
+      variables: UsersUserUsersIdGetVariables;
     };

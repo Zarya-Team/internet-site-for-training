@@ -3,6 +3,41 @@
  *
  * @version 0.0.1
  */
+export type BodyAuthJwtLoginAuthJwtLoginPost = {
+  grantType?: string | null;
+  username: string;
+  password: string;
+  /**
+   * @default
+   */
+  scope?: string;
+  clientId?: string | null;
+  clientSecret?: string | null;
+};
+
+export type BodyResetForgotPasswordAuthForgotPasswordPost = {
+  /**
+   * @format email
+   */
+  email: string;
+};
+
+export type BodyResetResetPasswordAuthResetPasswordPost = {
+  token: string;
+  password: string;
+};
+
+export type BodyVerifyRequestTokenAuthRequestVerifyTokenPost = {
+  /**
+   * @format email
+   */
+  email: string;
+};
+
+export type BodyVerifyVerifyAuthVerifyPost = {
+  token: string;
+};
+
 export type CategoriesSchema = {
   id: number;
   name: string;
@@ -12,6 +47,14 @@ export type CountriesSchema = {
   id: number;
   name: string;
   history: string;
+};
+
+export type ErrorModel = {
+  detail:
+    | string
+    | {
+        [key: string]: string;
+      };
 };
 
 export type HTTPValidationError = {
@@ -33,6 +76,57 @@ export type RecipesSchema = {
   id: number;
   title: string;
   desc: string;
+};
+
+export type UserCreate = {
+  /**
+   * @format email
+   */
+  email: string;
+  password: string;
+  /**
+   * @default true
+   */
+  isActive?: boolean | null;
+  /**
+   * @default false
+   */
+  isSuperuser?: boolean | null;
+  /**
+   * @default false
+   */
+  isVerified?: boolean | null;
+};
+
+export type UserRead = {
+  /**
+   * @format uuid
+   */
+  id: string;
+  /**
+   * @format email
+   */
+  email: string;
+  /**
+   * @default true
+   */
+  isActive?: boolean;
+  /**
+   * @default false
+   */
+  isSuperuser?: boolean;
+  /**
+   * @default false
+   */
+  isVerified?: boolean;
+};
+
+export type UserUpdate = {
+  password?: string | null;
+  email?: string | null;
+  isActive?: boolean | null;
+  isSuperuser?: boolean | null;
+  isVerified?: boolean | null;
 };
 
 export type ValidationError = {

@@ -3,15 +3,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {FaRegCircleUser} from 'react-icons/fa6'
 import { AiFillHeart } from 'react-icons/ai'
-import { useMemo } from 'react'
+import { AiOutlineHeart } from 'react-icons/ai'
+import { useMemo, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { useRecipeGetRecipeGet } from '@/queries/openApIComponents'
+import myImage from  "../../../../../public/Ramen.png";
 
 export default function Recipe() {
+  const [liked,setLiked] = useState(false)
   
   const vars = usePathname()
 
-  const {data,error,isLoading} = useRecipeGetRecipeGet({queryParams:{recipe_id:Number(vars.split('/')[1])}})
+  const {data,error,isLoading} = useRecipeGetRecipeGet({queryParams:{recipe_id:Number(vars.split("/").pop())}})
 
   const Ingredients = useMemo(() =>{
       const IngrArr: React.JSX.Element[] = [];
@@ -42,35 +45,39 @@ export default function Recipe() {
       return RecipeArr
   },[data])
 
+if(!isLoading && error){
   return (
     <>
-    <div className='navbar bg-[#F1E1D0] p-0 flex flex-col'>
-      <div></div>
-      <div className='flex justify-between w-full border-b border-black'>
-        <Link href='#' className='text-black text-[40px] ml-[68px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Кухни народов мира</Link>
-        <div className='flex mr-[44px] justify-around'>
-          <div className="form-control flex items-center w-[359px] justify-center ">
-            <input type="text" placeholder="Search" className="input input-bordered rounded-full !w-[359px] md:w-auto bg-white" />
-          </div>
-          <Link href='#' className='text-black items-center justify-center h-[90px] flex text-[55px] ml-[68px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>
-            <span className='text-black text-[30px] mr-[45px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Вход</span>
-            <FaRegCircleUser size={50}></FaRegCircleUser>
-          </Link>
+      <>
+      <div className='container flex flex-col items-center mx-auto justify-center mt-[56px] mb-[56px] '>
+        <div className='w-[1024px] bg-[#F1E1D0] items-center justify-center text-center p-4 text-black'>
+          В данный момент не существует блюда под данным ID
         </div>
+          
       </div>
-      <div className='flex justify-between h-[70px] w-full'>
-        <Link href='#' className='text-black text-[30px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Избранное</Link>
-        <Link href='#' className='text-black text-[30px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Добавить рецепт</Link>
-        <Link href='#' className='text-black text-[30px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>О нас</Link>
-      </div> 
-    </div>
+      </>
+    </>
+  )
+}
+
+if(isLoading){
+  return(
+    <>
+    </>
+  )
+}
+ if(!isLoading && data?.title){
+  return(
+    <>
     <div className='container flex flex-col items-center mx-auto justify-center mt-[56px] mb-[56px] '>
       <div className='card w-[1024px] '>
-      <Image src='/Ramen.png' alt='Блюдо' width={1024} height={701} className='rounded-t-[3rem]'></Image>
+      <Image src={myImage.default} alt='Блюдо' width={1024} height={701} className='rounded-t-[3rem]'></Image>
         <div className='bg-[#F1E1D0] rounded-b-[3rem]'>
            <div className='flex justify-between items-center mx-[60px] mt-12'>
               <span className='text-[35px] text-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'700'}}>{data?.title}</span>
-              <AiFillHeart size={40} fill={'black'} stroke={'black'} />
+              <button className='btn btn-ghost' onClick={() => {setLiked(!liked)}}>
+                {liked ? <AiFillHeart size={40} fill={'black'} stroke={'black'} /> : <AiOutlineHeart size={40}  stroke={'black'}></AiOutlineHeart>}
+              </button>
            </div>
            <div className='mx-[30px] mt-12'>
               <span className='text-[30px] text-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400',fontStyle:'italic'}}>Ингредиенты</span>
@@ -90,4 +97,5 @@ export default function Recipe() {
     </div>
     </>
   )
+ }
 }
