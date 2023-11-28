@@ -1,21 +1,22 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import {FaRegCircleUser} from 'react-icons/fa6'
 import { AiFillHeart } from 'react-icons/ai'
 import { useMemo } from 'react'
+import { usePathname } from 'next/navigation'
 import { useRecipeGetRecipeGet } from '@/queries/openApIComponents'
-import { useRouter } from 'next/router'
 
 export default function Recipe() {
+  
+  const vars = usePathname()
 
-  const router = useRouter()
-  const id = Number(router.query.id)   
-
-  const recipe = useRecipeGetRecipeGet({queryParams:{recipe_id:1}})
+  const {data,error,isLoading} = useRecipeGetRecipeGet({queryParams:{recipe_id:1}})
 
   const Ingredients = useMemo(() =>{
       const IngrArr: React.JSX.Element[] = [];
-      recipe.data?.ingredients.map((ingr) => {
+      console.log(data)
+      data?.ingredients.map((ingr) => {
         IngrArr.push(
           <li>
             <span className='text-[30px] text-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400', fontStyle:'italic'}}>
@@ -25,11 +26,11 @@ export default function Recipe() {
         )
       })
       return IngrArr
-  },[recipe.data?.ingredients])
+  },[data])
 
   const Recipes = useMemo(() => {
     const RecipeArr: React.JSX.Element[] = [];
-      recipe.data?.desc.split('.').map((ingr) => {
+      data?.desc.split('. ').map((ingr) => {
         RecipeArr.push(
           <li>
             <span className='text-[30px] text-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400', fontStyle:'italic'}}>
@@ -39,11 +40,12 @@ export default function Recipe() {
         )
       })
       return RecipeArr
-  },[recipe.data?.desc])
+  },[data])
 
   return (
     <>
     <div className='navbar bg-[#F1E1D0] p-0 flex flex-col'>
+      <div>{vars}</div>
       <div className='flex justify-between w-full border-b border-black'>
         <Link href='#' className='text-black text-[40px] ml-[68px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Кухни народов мира</Link>
         <div className='flex mr-[44px] justify-around'>
@@ -67,7 +69,7 @@ export default function Recipe() {
       <Image src='/Ramen.png' alt='Блюдо' width={1024} height={701} className='rounded-t-[3rem]'></Image>
         <div className='bg-[#F1E1D0] rounded-b-[3rem]'>
            <div className='flex justify-between items-center mx-[60px] mt-12'>
-              <span className='text-[35px] text-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'700'}}>{recipe.data?.title}</span>
+              <span className='text-[35px] text-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'700'}}>{data?.title}</span>
               <AiFillHeart size={40} fill={'black'} stroke={'black'} />
            </div>
            <div className='mx-[30px] mt-12'>
@@ -88,8 +90,4 @@ export default function Recipe() {
     </div>
     </>
   )
-}
-
-export async function getStaticPaths(){
-
 }
