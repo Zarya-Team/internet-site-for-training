@@ -9,11 +9,11 @@ export default function About(){
                 <p className="mb-6" style={{fontFamily:'IBM Plex Serif', fontWeight:'400',fontStyle:'italic'}}>Наша цель - вдохновить вас на кулинарные эксперименты и сделать процесс приготовления еды увлекательным и удовлетворительным. Мы надеемся, что наши рецепты и советы помогут вам создать вкусные и незабываемые блюда, которыми можно наслаждаться в кругу семьи и друзей.</p>
                 <div className="flex mb-2 gap-2">
                     <FaPhoneAlt size={50} fill={"black"}></FaPhoneAlt>
-                    <p>0-000-000-00-00</p>
+                    <p>7-123-456-78-90</p>
                 </div>
                 <div className="flex gap-2">
                     <SiMaildotru size={50} fill={"black"}></SiMaildotru>
-                    <p>0-000-000-00-00</p>
+                    <p>example@example.com</p>
                 </div>
             </div>
         </div>
