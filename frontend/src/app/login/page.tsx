@@ -46,11 +46,11 @@ export default function Login(){
         >
         {({errors, isSubmitting, touched}) => 
         (
-            <Form className="items-center bg-[#F1E1D0] p-3 pt-[50px] w-[550px] h-[400px] shadow-lg text-black flex flex-col">
+            <Form className="items-center bg-[#F1E1D0] p-3 pt-[50px] w-[550px] h-[400px] max-sm:w-[300px] max-sm:h-[300px] max-sm:pt-[30px] shadow-lg text-black flex flex-col">
                 
-                <h1 className='mb-14 text-2xl font-bold'>Авторизация</h1>
+                <h1 className='mb-14 max-sm:mb-6 text-2xl font-bold'>Авторизация</h1>
                 <div className={classNames({
-                    "form-control bg-white text-black flex flex-col items-center mb-6 h-[40px] w-[450px] shadow-sm":true,
+                    "form-control bg-white text-black flex flex-col items-center mb-6 h-[40px] shadow-sm":true,
                     'mb-10':touched.username && errors.username
                     })}>
                     <Field 
@@ -58,7 +58,7 @@ export default function Login(){
                         id='username' 
                         name='username' 
                         className={classNames({
-                        'input bg-white text-black input-bordered h-[40px] w-[450px] p-4': true,
+                        'input bg-white text-black input-bordered h-[40px] w-[450px] max-sm:w-[250px] p-4': true,
                         'input-error mb-2': touched.username && errors.username,
                     })}
                     placeholder="Электронная почта"
@@ -70,7 +70,7 @@ export default function Login(){
                         </label>
                 </div>
                 <div className={classNames({
-                    "form-control bg-white text-black flex flex-col items-center mb-8 h-[40px] w-[450px] shadow-sm":true,
+                    "form-control bg-white text-black flex flex-col items-center mb-8 h-[40px] shadow-sm":true,
                     'mb-10':touched.username && errors.username
                     })}>
                     <Field
@@ -78,7 +78,7 @@ export default function Login(){
                         id='password'
                         name='password'
                         className={classNames({
-                        'input bg-white text-black input-bordered h-[40px] w-[450px] p-4': true,
+                        'input bg-white text-black input-bordered h-[40px] w-[450px] max-sm:w-[250px] p-4': true,
                         'input-errormb-2': touched.password && errors.password,
                         })}
                         placeholder="Пароль"

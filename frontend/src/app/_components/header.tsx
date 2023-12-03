@@ -5,25 +5,52 @@ import { useVerifiedToken } from '../../utils/hooks'
 export default function Header(){
     const {user} = useVerifiedToken()
     return(
-    <div className='navbar bg-[#F1E1D0] p-0 flex flex-col'>
-        <div className='flex justify-between w-full border-b border-black'>
-        <Link href='/' className='text-black text-[40px] ml-[68px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Кухни народов мира</Link>
+    <>
+    <div className='navbar lg:flex hidden bg-[#F1E1D0] p-0 flex-col'>
+        <div className='flex justify-between w-full h-[50px] border-b border-black'>
+        <Link href='/' className='text-black text-[28px] ml-[68px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Кухни народов мира</Link>
         <div className='flex mr-[44px] justify-around'>
           <div className="form-control flex items-center w-[359px] justify-center ">
-            <input type="text" placeholder="Search" className="input input-bordered rounded-full !w-[359px] md:w-auto bg-white" />
+            <input type="text" placeholder="Search" className="input text-[12px] h-[32px] input-bordered rounded-full !w-[359px] md:w-auto bg-white" />
           </div>
           <Link href="/login" className='text-black items-center justify-center h-[90px] flex text-[55px] ml-[68px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>
-            <span className='text-black text-[30px] mr-[45px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>{user?.email ?? 'Вход'}</span>
-            <FaRegCircleUser size={50}></FaRegCircleUser>
+            <span className='text-black text-[18px] mr-[45px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>{user?.email ?? 'Вход'}</span>
+            <FaRegCircleUser size={28}></FaRegCircleUser>
           </Link>
         </div>
       </div>
-      <div className='flex justify-between h-[70px] w-full'>
-        <Link href='#' className='text-black text-[30px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Избранное</Link>
-        <Link href='#' className='text-black text-[30px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Добавить рецепт</Link>
-        <Link href='/about' className='text-black text-[30px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>О нас</Link>
-      </div> 
+      <div className='flex justify-between h-[50px] w-full'>
+          <Link href='#' className='text-black flex justify-center items-center text-[24px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Избранное</Link>
+          <Link href='#' className='text-black flex justify-center items-center text-[24px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Добавить рецепт</Link>
+          <Link href='/about' className='text-black flex justify-center items-center text-[24px] h-[45px] text-center w-[33%]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>О нас</Link>
+        </div> 
+      </div>
+    <div className='navbar lg:hidden bg-[#F1E1D0] p-0 flex'>
+      <div className='flex mx-5 w-full'>
+      <div className='flex navbar-start'>
+          <div className="form-control flex w-[120px]">
+              <input type="text" placeholder="Search" className="input text-[12px] h-[32px] input-bordered rounded-full !w-[120px] md:w-auto bg-white" />
+          </div>
+        </div>
+        <div className="navbar-center">
+          <Link href='/' className='text-black text-[28px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>КНМ</Link>
+        </div>
+        <div className="navbar-end flex">
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="black"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+            </div>
+            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#F1E1D0] w-52">
+              <li><Link href='#' className='text-black flex text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Избранное</Link></li>
+              <li><Link href='#' className='text-black flex  text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Добавить рецепт</Link></li>
+              <li><Link href="/login" className='text-black  flex text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Войти</Link></li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
     </div>
+    </>
     )
     
 }
