@@ -51,7 +51,7 @@ export default function Login(){
         (
             <Form className="items-center bg-[#F1E1D0] p-3 pt-[50px] w-[550px] h-[450px] max-sm:w-[300px] max-sm:h-[300px] max-sm:pt-[30px] shadow-lg text-black flex flex-col">
                 
-                <h1 className='mb-14 max-sm:mb-6 text-2xl font-bold'>Авторизация</h1>
+                <h1 className='mb-14 max-sm:mb-6 text-2xl font-bold'>Регистрация</h1>
                 <div className={classNames({
                     "form-control bg-white text-black flex flex-col items-center mb-6 h-[40px] shadow-sm":true,
                     'mb-10':touched.username && errors.username
@@ -92,14 +92,15 @@ export default function Login(){
                                 </span>
                             </label>
                 </div>
-                <button className="btn btn-primary bg-white mb-[30px] w-[300px] text-black" type="submit">
+                <button className="btn btn-primary bg-white w-[300px] mb-[30px] text-black" type="submit">
                     {isSubmitting ? (
                         <div className="loading loading-spinner loading-md" />
                     ) : (
                         'Войти'
                     )}
               </button>
-              <a className="btn btn-primary bg-white w-[300px] text-black">Регистрация</a>
+              
+              <a className="btn btn-primary bg-white w-[300px] text-black">Авторизация</a>
             </Form>
         )}
         </Formik>

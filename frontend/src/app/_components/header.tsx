@@ -1,9 +1,9 @@
 import Link from "next/link"
 import { FaRegCircleUser } from "react-icons/fa6"
-import { useVerifiedToken } from '../../utils/hooks'
+import { useVerifiedUser } from '../../utils/hooks'
 
 export default function Header(){
-    const {user} = useVerifiedToken()
+    const {curUser,loading: userLoading} = useVerifiedUser()
     return(
     <>
     <div className='navbar lg:flex hidden bg-[#F1E1D0] p-0 flex-col'>
@@ -14,7 +14,7 @@ export default function Header(){
             <input type="text" placeholder="Search" className="input text-[12px] h-[32px] input-bordered rounded-full !w-[359px] md:w-auto bg-white" />
           </div>
           <Link href="/login" className='text-black items-center justify-center h-[90px] flex text-[55px] ml-[68px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>
-            <span className='text-black text-[18px] mr-[45px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>{user?.email ?? 'Вход'}</span>
+            <span className='text-black text-[18px] mr-[45px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>{curUser?.email ?? 'Вход'}</span>
             <FaRegCircleUser size={28}></FaRegCircleUser>
           </Link>
         </div>
