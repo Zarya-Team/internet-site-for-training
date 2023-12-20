@@ -100,7 +100,7 @@ export default function Login(){
                     )}
               </button>
               
-              <a className="btn btn-primary bg-white w-[300px] text-black">Авторизация</a>
+              <a className="btn btn-primary bg-white w-[300px] text-black" href="/login">Авторизация</a>
             </Form>
         )}
         </Formik>

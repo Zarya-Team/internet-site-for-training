@@ -99,7 +99,7 @@ export default function Login(){
                         'Войти'
                     )}
               </button>
-              <a className="btn btn-primary bg-white w-[300px] text-black">Регистрация</a>
+              <a className="btn btn-primary bg-white w-[300px] text-black" href="/register">Регистрация</a>
             </Form>
         )}
         </Formik>
