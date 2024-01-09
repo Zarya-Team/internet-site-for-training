@@ -38,7 +38,6 @@ export function useVerifiedUser(redirectOnFail = '/login') {
         console.log(user);
         if(!user || error){
             setUser(null)
-            router.push(redirectOnFail)
             return;
         }  
     },[user,redirectOnFail,router,error,data]) 

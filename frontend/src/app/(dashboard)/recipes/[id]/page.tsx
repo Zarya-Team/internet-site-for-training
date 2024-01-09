@@ -49,7 +49,7 @@ if(!isLoading && error){
   return (
     <>
       <>
-      <div className='container flex flex-col items-center mx-auto justify-center mt-[56px] mb-[56px] '>
+      <div className='container flex flex-col items-center mx-auto justify-center mt-[56px] mb-[56px] h-[100vh]'>
         <div className='w-[70%] bg-[#F1E1D0] items-center justify-center text-center p-4 text-black'>
           В данный момент не существует блюда под данным ID
         </div>
