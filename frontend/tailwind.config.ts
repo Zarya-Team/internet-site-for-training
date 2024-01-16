@@ -9,7 +9,7 @@ const config: Config = {
     theme: [
       {
         mytheme:{
-          basis:'#F1E1D0'
+          'light-brown':'#F1E1D0'
         }
       }],
   },

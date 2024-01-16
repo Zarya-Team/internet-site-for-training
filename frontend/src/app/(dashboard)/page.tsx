@@ -15,21 +15,21 @@ export default function Home() {
         <div className='h-[2px] bg-white w-[1024px] mb-4'></div>
         <div className=" w-[1024px] carousel gap-4">
           <div className='carousel-item w-full gap-4 items-center justify-center' id='1'>
-            <a className='w-[450px] h-[350px] bg-[#F1E1D0] shrink-0' href='/japan'>
+            <a className='w-[450px] h-[350px] bg-[#F1E1D0] shrink-0' href='/country/2'>
               <Image src='/Country.png' width={450} height={300} alt='Страна' className='h-[300px]'></Image>
               <p className='text-[24px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Японская кухня</p>
             </a>
-            <a className='w-[450px] h-[350px] bg-[#F1E1D0] shrink-0' href='/italy'>
+            <a className='w-[450px] h-[350px] bg-[#F1E1D0] shrink-0' href='/country/3'>
               <Image src='/Country.png' width={450} height={300} alt='Страна' className='h-[300px]'></Image>
               <p className='text-[24px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Итальянская кухня</p>
             </a>
           </div>
           <div className='carousel-item w-full gap-4 items-center justify-center' id='2'>
-            <a className='w-[450px] h-[350px] bg-[#F1E1D0]  shrink-0' href='/france'>
+            <a className='w-[450px] h-[350px] bg-[#F1E1D0]  shrink-0' href='/country/1'>
               <Image src='/Country.png' width={450} height={300} alt='Страна' className='h-[300px]'></Image>
               <p className='text-[24px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Французская кухня</p>
             </a>
-            <a className='w-[450px] h-[350px] bg-[#F1E1D0]  shrink-0' href='/russia'>
+            <a className='w-[450px] h-[350px] bg-[#F1E1D0]  shrink-0' href='/country/russia'>
               <Image src='/Country.png' width={450} height={300} alt='Страна' className='h-[300px]'></Image>
               <p className='text-[24px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Русская кухня</p>
             </a>
@@ -38,8 +38,8 @@ export default function Home() {
           
         </div>
         <div className='flex justify-center w-full gap-2 mt-2'>
-              <a href='#1' className='btn btn-xs rounded-none bg-[#F1E1D0]'>1</a>
-              <a href='#2'className='btn btn-xs rounded-none bg-[#F1E1D0]'>2</a>
+              <a href='#1' className='btn btn-xs rounded-none bg-[#F1E1D0] border-none'>1</a>
+              <a href='#2'className='btn btn-xs rounded-none bg-[#F1E1D0] border-none'>2</a>
         </div>
         <div className='text-[46px] text-white' style={{fontFamily:'IBM Plex Serif', fontWeight:'400', fontStyle: 'italic'}}>Популярное</div>
         <div className='h-[2px] bg-white w-[1024px] mb-4'></div>

@@ -5,12 +5,15 @@
 :root {
   background-image: url('/assorted-plant-leaves-on-table 2.png');
   background-size: cover;
+  height: 100vh;
 }
 
 @media (prefers-color-scheme: dark) {
 }
 
-body {}
+body {
+  height: 100vh;
+}
 
 @layer utilities {
   /* Hide scrollbar for Chrome, Safari and Opera */
