@@ -93,7 +93,7 @@ export default function Login(){
                                 </span>
                             </label>
                 </div>
-                <button className="btn btn-primary bg-white w-[300px] mb-[30px] text-black" type="submit">
+                <button className="btn btn-primary bg-white w-[300px] mb-[30px] max-md:w-[200px] max-md:h-[380px] text-black" type="submit">
                     {isSubmitting ? (
                         <div className="loading loading-spinner loading-md" />
                     ) : (
@@ -101,7 +101,7 @@ export default function Login(){
                     )}
               </button>
               
-              <a className="btn btn-primary bg-white w-[300px] text-black" href="/login">Авторизация</a>
+              <a className="btn btn-primary bg-white w-[300px] max-md:w-[200px] max-md:h-[380px] text-black" href="/login">Авторизация</a>
             </Form>
         )}
         </Formik>

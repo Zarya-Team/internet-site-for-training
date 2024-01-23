@@ -18,18 +18,13 @@ export default function Header(){
       </div>
       <div className='flex justify-between h-[50px] w-full'>
           <Link href='#' className='text-black flex justify-center items-center text-[24px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Избранное</Link>
-          <Link href='#' className='text-black flex justify-center items-center text-[24px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Добавить рецепт</Link>
+          <Link href='#' className='text-black flex justify-center items-center text-[24px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Поиск</Link>
           <Link href='/about' className='text-black flex justify-center items-center text-[24px] h-[45px] text-center w-[33%]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>О нас</Link>
         </div> 
       </div>
     <div className='navbar lg:hidden bg-[#F1E1D0] p-0 flex'>
       <div className='flex mx-5 w-full'>
-      <div className='flex navbar-start'>
-          <div className="form-control flex w-[120px]">
-              <input type="text" placeholder="Search" className="input text-[12px] h-[32px] input-bordered rounded-full !w-[120px] md:w-auto bg-white" />
-          </div>
-        </div>
-        <div className="navbar-center">
+        <div className="navbar-start">
           <Link href='/' className='text-black text-[28px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>КНМ</Link>
         </div>
         <div className="navbar-end flex">

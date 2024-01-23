@@ -51,10 +51,10 @@ export default function Country(){
     if(!isLoading && data){
         return(
             <div className="container mx-auto items-center justify-center">
-                <div className="card bg-[#F1E1D0] m-16 p-4 text-black text-center">
+                <div className="card bg-[#F1E1D0] m-16 p-4 text-black text-center max-[400px]:hidden">
                     {country?.history}
                 </div>
-                <div className="card bg-[#F1E1D0] m-16 p-4 text-black flex flex-row items-center justify-center max-lg:overflow-scroll">
+                <div className="card bg-[#F1E1D0] m-16 p-4 max-md:w-[250px] max-md:overflow-scroll lg:w-[770px] overflow-hidden xl:w-[1270px] mx-auto text-black flex flex-row items-center justify-center">
                     {recipes}
                 </div>
                 <div className="flex gap-4 justify-center items-center mb-[13.5rem] w-[282px] mx-auto">
