@@ -30,7 +30,8 @@ export default function Login(){
                     const responce = await logIn(values)
                     setUser({
                         id:'',
-                        email: values?.username
+                        email: values?.username,
+                        favourites: []
                     })
                     router.push('/');
                 }

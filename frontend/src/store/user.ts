@@ -4,6 +4,7 @@ import persist from 'effector-localstorage';
 export type User = {
   id: string;
   email: string;
+  favourites: Array<string>;
 };
 
 export const setUser = createEvent<User | null>();

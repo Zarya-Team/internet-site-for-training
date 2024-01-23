@@ -1,4 +1,4 @@
-import { useStore } from 'effector-react';
+import { useStore, useUnit } from 'effector-react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { $user, User, setUser } from '../store/user';
@@ -46,7 +46,13 @@ export function useVerifiedUser(redirectOnFail = '/login') {
         setCurUser(data ? {
             id: data?.id,
             email: data?.email,
+            favourites: [],
         } : null)
     },[data]);
     return({loading: isLoading, curUser, data})
+}
+
+export function useLike(recipeId:string){
+    
+    return({isLoading, curUser, data})
 }

@@ -4,13 +4,17 @@ import Link from 'next/link'
 import {FaRegCircleUser} from 'react-icons/fa6'
 import { AiFillHeart } from 'react-icons/ai'
 import { AiOutlineHeart } from 'react-icons/ai'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { useRecipeGetRecipeGet } from '@/queries/openApIComponents'
 import myImage from  "../../../../../public/Ramen.png";
+import { useLike } from '@/utils/hooks'
+import { useUnit } from 'effector-react'
+import { $user } from '@/store/user'
 
 export default function Recipe() {
   const [liked,setLiked] = useState(false)
+  const user = useUnit($user)
   
   const vars = usePathname()
 
@@ -76,7 +80,7 @@ if(isLoading){
         <div className='bg-[#F1E1D0] rounded-b-[3rem]'>
            <div className='flex justify-between items-center xl:mx-[60px] xl:mt-12 md:mx-[50px] mt-4 mx-[28px] '>
               <span className='xl:text-[35px] md:text-[28px] text-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'700'}}>{data?.title}</span>
-              <button className='btn btn-ghost' onClick={() => {setLiked(!liked)}}>
+              <button className='btn btn-ghost' onClick={() => { setLiked(!liked)}}>
                 {liked ? <AiFillHeart fill={'black'} stroke={'black'}  className="h-[24px] xl:h-[40px] md:h-7 md:w-7 xl:w-[40px]"/> : <AiOutlineHeart stroke={'black'} className="h-[24px] xl:h-[40px] md:h-7 md:w-7 xl:w-[40px]"></AiOutlineHeart>}
               </button>
            </div>

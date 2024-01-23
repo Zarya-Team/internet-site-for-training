@@ -10,9 +10,6 @@ export default function Header(){
         <div className='flex justify-between w-full h-[50px] border-b border-black'>
         <Link href='/' className='text-black text-[28px] ml-[68px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Кухни народов мира</Link>
         <div className='flex mr-[44px] justify-around'>
-          <div className="form-control flex items-center w-[359px] justify-center ">
-            <input type="text" placeholder="Search" className="input text-[12px] h-[32px] input-bordered rounded-full !w-[359px] md:w-auto bg-white" />
-          </div>
           <Link href="/login" className='text-black items-center justify-center h-[90px] flex text-[55px] ml-[68px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>
             <span className='text-black text-[18px] mr-[45px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>{curUser?.email ?? 'Вход'}</span>
             <FaRegCircleUser size={28}></FaRegCircleUser>
@@ -42,8 +39,8 @@ export default function Header(){
             </div>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#F1E1D0] w-52">
               <li><Link href='#' className='text-black flex text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Избранное</Link></li>
-              <li><Link href='#' className='text-black flex  text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Добавить рецепт</Link></li>
-              <li><Link href="/login" className='text-black  flex text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Войти</Link></li>
+              <li><Link href='#' className='text-black flex  text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Поиск</Link></li>
+              <li><Link href="/login" className='text-black  flex text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>{curUser?.email ?? 'Вход'}</Link></li>
             </ul>
           </div>
         </div>

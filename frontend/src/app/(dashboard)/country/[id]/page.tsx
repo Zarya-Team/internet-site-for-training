@@ -33,9 +33,14 @@ export default function Country(){
 
     if(!isLoading && error){
         return(
-            <div>
-                Ошиблися
-            </div>
+            <>
+      <div className='container flex flex-col items-center mx-auto justify-center mt-[56px] mb-[56px] h-[100vh]'>
+        <div className='w-[70%] bg-[#F1E1D0] items-center justify-center text-center p-4 text-black'>
+          В данный момент не существует страны под данным ID
+        </div>
+          
+      </div>
+      </>
         )
     }
 
@@ -49,10 +54,10 @@ export default function Country(){
                 <div className="card bg-[#F1E1D0] m-16 p-4 text-black text-center">
                     {country?.history}
                 </div>
-                <div className="card bg-[#F1E1D0] m-16 p-4 text-black flex flex-row items-center justify-center">
+                <div className="card bg-[#F1E1D0] m-16 p-4 text-black flex flex-row items-center justify-center max-lg:overflow-scroll">
                     {recipes}
                 </div>
-                <div className="flex gap-4 justify-center items-center mb-16 w-[282px]">
+                <div className="flex gap-4 justify-center items-center mb-[13.5rem] w-[282px] mx-auto">
                     <a className="btn bg-[#F1E1D0] border-none" onClick={() => {changePage(1)}}>1</a>
                     <a className="btn bg-[#F1E1D0] border-none" onClick={() => {changePage(2)}}>2</a>
                     <a className="btn bg-[#F1E1D0] border-none" onClick={() => {changePage(3)}}>3</a>
