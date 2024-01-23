@@ -21,3 +21,4 @@ async def get_async_session() -> AsyncSession:
 
 Base = declarative_base()
 metadata = Base.metadata
+

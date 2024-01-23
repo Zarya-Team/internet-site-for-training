@@ -3,13 +3,23 @@ import sqlalchemy as sa
 from fastapi_users.db import SQLAlchemyBaseUserTableUUID, SQLAlchemyUserDatabase
 from sqlalchemy.ext.asyncio import AsyncSession
 from fastapi import Depends
+from sqlalchemy import Table, Column, Integer, ForeignKey
+from sqlalchemy.orm import relationship
+import fastapi_users_db_sqlalchemy
 
 from src.settings.db import Base, get_async_session
 from src.apps.schema import RecipesSchema, CountriesSchema, CategoriesSchema, IngredientsSchema
 
+favourites_association_table = Table(
+    'favourites',
+    Base.metadata,
+    Column('user_id', fastapi_users_db_sqlalchemy.generics.GUID, ForeignKey('user.id')),
+    Column('recipe_id', Integer, ForeignKey('recipes.id'))
+)
 
 class User(SQLAlchemyBaseUserTableUUID, Base):
-    pass
+    
+    favourites = relationship('Recipes', secondary=favourites_association_table)
 
 
 async def get_user_db(session: AsyncSession = Depends(get_async_session)):

@@ -1,11 +1,14 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, HTTPException, status
 from sqlalchemy import select
+from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy.future import select
 
 from typing import List
 
 from src.apps.schema import RecipesSchema, CountriesSchema, CategoriesSchema, RecipeIngredientsSchema
 from src.settings.db import get_async_session, AsyncSession
 from src.apps.model import *
+from src.apps.utils import current_active_user
 
 router: APIRouter = APIRouter()
 
@@ -22,6 +25,10 @@ tags_metadata = [
         "name": "Получить полные данные",
         "description": "Возвращает полные данные о рецепте",
     },
+    {
+        "name": "Избранное",
+        "description": "Работа с рецептами для пользователя",
+    },
 ]
 
 
@@ -32,6 +39,77 @@ async def countries_get_all(sesion: AsyncSession = Depends(get_async_session)):
     query = await sesion.execute(select(Countries))
 
     return [c[0].to_read_model() for c in query]
+
+
+# Добавление рецепта в избранное
+@router.post("/favourites/{recipe_id}", tags=["Избранное"])
+async def add_to_favourites(
+    recipe_id: int,
+    session: AsyncSession = Depends(get_async_session),
+    current_user: User = Depends(current_active_user),
+):
+    # Загрузка рецепта
+    stmt = select(Recipes).where(Recipes.id == recipe_id)
+    recipe = await session.scalar(stmt)
+    if not recipe:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Recipe not found")
+
+    # Загрузка избранных рецептов пользователя асинхронно
+    await session.refresh(current_user, attribute_names=["favourites"])
+
+    # Добавление рецепта в избранное
+    current_user.favourites.append(recipe)
+    session.add(current_user)
+
+    try:
+        await session.commit()
+    except SQLAlchemyError:
+        await session.rollback()
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Could not add to favourites")
+
+    return {"message": "Recipe added to favourites"}
+
+
+# Удаление рецепта из избранного
+@router.delete("/favourites/{recipe_id}", tags=["Избранное"])
+async def remove_from_favourites(
+    recipe_id: int, session: AsyncSession = Depends(get_async_session), current_user: User = Depends(current_active_user)
+):
+    # Загрузка рецепта
+    stmt = select(Recipes).where(Recipes.id == recipe_id)
+    recipe = await session.scalar(stmt)
+    if not recipe:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Recipe not found")
+
+    # Явная асинхронная загрузка избранных рецептов пользователя
+    await session.refresh(current_user, attribute_names=['favourites'])
+
+    # Удаление рецепта из избранного
+    current_user.favourites.remove(recipe)
+    session.add(current_user)
+    try:
+        await session.commit()
+    except SQLAlchemyError:
+        await session.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Could not remove from favourites"
+        )
+
+    return {"message": "Recipe removed from favourites"}
+
+
+# Получение списка избранных рецептов
+@router.get("/favourites", tags=["Избранное"])
+async def get_favourites(
+    session: AsyncSession = Depends(get_async_session), current_user: User = Depends(current_active_user)
+):
+    # Явная асинхронная загрузка избранных рецептов
+    await session.refresh(current_user, attribute_names=["favourites"])
+
+    # Теперь можно безопасно обращаться к атрибуту favourites
+    favourite_recipes = [recipe.to_read_model() for recipe in current_user.favourites]
+
+    return favourite_recipes
 
 
 @router.get(
@@ -70,6 +148,25 @@ async def categories_recipes_get_all(
 
     query = await sesion.execute(
         select(Recipes).filter(Recipes.categories_id == categories_id).offset(offset).limit(per_page)
+    )
+    return [c[0].to_read_model() for c in query]
+
+@router.get(
+    "/search_recipes_by_description",
+    response_model=List[RecipesSchema],
+    tags=["Получить данные по фильтру"],
+    summary="Поиск рецептов по описанию",
+)
+async def search_recipes_by_description(
+    description_query: str = Query(..., description="Текст для поиска в описании рецепта"),
+    sesion: AsyncSession = Depends(get_async_session),
+    page: int = Query(1, description="Номер страницы, стандартно 1"),
+    per_page: int = Query(5, description="Количество выгружаемых рецептов, стандартно 5"),
+):
+    offset = (page - 1) * per_page
+
+    query = await sesion.execute(
+        select(Recipes).filter(Recipes.description.ilike(f"%{description_query}%")).offset(offset).limit(per_page)
     )
     return [c[0].to_read_model() for c in query]
 
