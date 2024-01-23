@@ -64,6 +64,152 @@ export const useCountriesGetAllCountriesGet = <
   });
 };
 
+export type AddToFavouritesFavouritesRecipeIdPostPathParams = {
+  recipeId: number;
+};
+
+export type AddToFavouritesFavouritesRecipeIdPostError = Fetcher.ErrorWrapper<{
+  status: 422;
+  payload: Schemas.HTTPValidationError;
+}>;
+
+export type AddToFavouritesFavouritesRecipeIdPostVariables = {
+  pathParams: AddToFavouritesFavouritesRecipeIdPostPathParams;
+} & OpenApIContext["fetcherOptions"];
+
+export const fetchAddToFavouritesFavouritesRecipeIdPost = (
+  variables: AddToFavouritesFavouritesRecipeIdPostVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    void,
+    AddToFavouritesFavouritesRecipeIdPostError,
+    undefined,
+    {},
+    {},
+    AddToFavouritesFavouritesRecipeIdPostPathParams
+  >({ url: "/favourites/{recipeId}", method: "post", ...variables, signal });
+
+export const useAddToFavouritesFavouritesRecipeIdPost = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      void,
+      AddToFavouritesFavouritesRecipeIdPostError,
+      AddToFavouritesFavouritesRecipeIdPostVariables
+    >,
+    "mutationFn"
+  >
+) => {
+  const { fetcherOptions } = useOpenApIContext();
+  return reactQuery.useMutation<
+    void,
+    AddToFavouritesFavouritesRecipeIdPostError,
+    AddToFavouritesFavouritesRecipeIdPostVariables
+  >({
+    mutationFn: (variables: AddToFavouritesFavouritesRecipeIdPostVariables) =>
+      fetchAddToFavouritesFavouritesRecipeIdPost({
+        ...fetcherOptions,
+        ...variables,
+      }),
+    ...options,
+  });
+};
+
+export type RemoveFromFavouritesFavouritesRecipeIdDeletePathParams = {
+  recipeId: number;
+};
+
+export type RemoveFromFavouritesFavouritesRecipeIdDeleteError =
+  Fetcher.ErrorWrapper<{
+    status: 422;
+    payload: Schemas.HTTPValidationError;
+  }>;
+
+export type RemoveFromFavouritesFavouritesRecipeIdDeleteVariables = {
+  pathParams: RemoveFromFavouritesFavouritesRecipeIdDeletePathParams;
+} & OpenApIContext["fetcherOptions"];
+
+export const fetchRemoveFromFavouritesFavouritesRecipeIdDelete = (
+  variables: RemoveFromFavouritesFavouritesRecipeIdDeleteVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    void,
+    RemoveFromFavouritesFavouritesRecipeIdDeleteError,
+    undefined,
+    {},
+    {},
+    RemoveFromFavouritesFavouritesRecipeIdDeletePathParams
+  >({ url: "/favourites/{recipeId}", method: "delete", ...variables, signal });
+
+export const useRemoveFromFavouritesFavouritesRecipeIdDelete = (
+  options?: Omit<
+    reactQuery.UseMutationOptions<
+      void,
+      RemoveFromFavouritesFavouritesRecipeIdDeleteError,
+      RemoveFromFavouritesFavouritesRecipeIdDeleteVariables
+    >,
+    "mutationFn"
+  >
+) => {
+  const { fetcherOptions } = useOpenApIContext();
+  return reactQuery.useMutation<
+    void,
+    RemoveFromFavouritesFavouritesRecipeIdDeleteError,
+    RemoveFromFavouritesFavouritesRecipeIdDeleteVariables
+  >({
+    mutationFn: (
+      variables: RemoveFromFavouritesFavouritesRecipeIdDeleteVariables
+    ) =>
+      fetchRemoveFromFavouritesFavouritesRecipeIdDelete({
+        ...fetcherOptions,
+        ...variables,
+      }),
+    ...options,
+  });
+};
+
+export type GetFavouritesFavouritesGetError = Fetcher.ErrorWrapper<undefined>;
+
+export type GetFavouritesFavouritesGetVariables =
+  OpenApIContext["fetcherOptions"];
+
+export const fetchGetFavouritesFavouritesGet = (
+  variables: GetFavouritesFavouritesGetVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<void, GetFavouritesFavouritesGetError, undefined, {}, {}, {}>({
+    url: "/favourites",
+    method: "get",
+    ...variables,
+    signal,
+  });
+
+export const useGetFavouritesFavouritesGet = <TData = void>(
+  variables: GetFavouritesFavouritesGetVariables,
+  options?: Omit<
+    reactQuery.UseQueryOptions<void, GetFavouritesFavouritesGetError, TData>,
+    "queryKey" | "queryFn" | "initialData"
+  >
+) => {
+  const { fetcherOptions, queryOptions, queryKeyFn } =
+    useOpenApIContext(options);
+  return reactQuery.useQuery<void, GetFavouritesFavouritesGetError, TData>({
+    queryKey: queryKeyFn({
+      path: "/favourites",
+      operationId: "getFavouritesFavouritesGet",
+      variables,
+    }),
+    queryFn: ({ signal }) =>
+      fetchGetFavouritesFavouritesGet(
+        { ...fetcherOptions, ...variables },
+        signal
+      ),
+    ...options,
+    ...queryOptions,
+  });
+};
+
 export type CountriesRecipesGetAllCountriesRecipesGetQueryParams = {
   countries_id: number;
   /**
@@ -210,6 +356,92 @@ export const useCategoriesRecipesGetAllCategoriesRecipesGet = <
     }),
     queryFn: ({ signal }) =>
       fetchCategoriesRecipesGetAllCategoriesRecipesGet(
+        { ...fetcherOptions, ...variables },
+        signal
+      ),
+    ...options,
+    ...queryOptions,
+  });
+};
+
+export type SearchRecipesByDescriptionSearchRecipesByDescriptionGetQueryParams =
+  {
+    /**
+     * Текст для поиска в описании рецепта
+     */
+    description_query: string;
+    /**
+     * Номер страницы, стандартно 1
+     *
+     * @default 1
+     */
+    page?: number;
+    /**
+     * Количество выгружаемых рецептов, стандартно 5
+     *
+     * @default 5
+     */
+    per_page?: number;
+  };
+
+export type SearchRecipesByDescriptionSearchRecipesByDescriptionGetError =
+  Fetcher.ErrorWrapper<{
+    status: 422;
+    payload: Schemas.HTTPValidationError;
+  }>;
+
+export type SearchRecipesByDescriptionSearchRecipesByDescriptionGetResponse =
+  Schemas.RecipesSchema[];
+
+export type SearchRecipesByDescriptionSearchRecipesByDescriptionGetVariables = {
+  queryParams: SearchRecipesByDescriptionSearchRecipesByDescriptionGetQueryParams;
+} & OpenApIContext["fetcherOptions"];
+
+export const fetchSearchRecipesByDescriptionSearchRecipesByDescriptionGet = (
+  variables: SearchRecipesByDescriptionSearchRecipesByDescriptionGetVariables,
+  signal?: AbortSignal
+) =>
+  openApIFetch<
+    SearchRecipesByDescriptionSearchRecipesByDescriptionGetResponse,
+    SearchRecipesByDescriptionSearchRecipesByDescriptionGetError,
+    undefined,
+    {},
+    SearchRecipesByDescriptionSearchRecipesByDescriptionGetQueryParams,
+    {}
+  >({
+    url: "/search_recipes_by_description",
+    method: "get",
+    ...variables,
+    signal,
+  });
+
+export const useSearchRecipesByDescriptionSearchRecipesByDescriptionGet = <
+  TData = SearchRecipesByDescriptionSearchRecipesByDescriptionGetResponse
+>(
+  variables: SearchRecipesByDescriptionSearchRecipesByDescriptionGetVariables,
+  options?: Omit<
+    reactQuery.UseQueryOptions<
+      SearchRecipesByDescriptionSearchRecipesByDescriptionGetResponse,
+      SearchRecipesByDescriptionSearchRecipesByDescriptionGetError,
+      TData
+    >,
+    "queryKey" | "queryFn" | "initialData"
+  >
+) => {
+  const { fetcherOptions, queryOptions, queryKeyFn } =
+    useOpenApIContext(options);
+  return reactQuery.useQuery<
+    SearchRecipesByDescriptionSearchRecipesByDescriptionGetResponse,
+    SearchRecipesByDescriptionSearchRecipesByDescriptionGetError,
+    TData
+  >({
+    queryKey: queryKeyFn({
+      path: "/search_recipes_by_description",
+      operationId: "searchRecipesByDescriptionSearchRecipesByDescriptionGet",
+      variables,
+    }),
+    queryFn: ({ signal }) =>
+      fetchSearchRecipesByDescriptionSearchRecipesByDescriptionGet(
         { ...fetcherOptions, ...variables },
         signal
       ),
@@ -417,7 +649,6 @@ export const useAuthJwtLogoutAuthJwtLogoutPost = (
     ...options,
   });
 };
-
 
 export type RegisterRegisterAuthRegisterPostError = Fetcher.ErrorWrapper<
   | {
@@ -810,7 +1041,6 @@ export const fetchUsersUserUsersIdGet = (
     UsersUserUsersIdGetPathParams
   >({ url: "/users/{id}", method: "get", ...variables, signal });
 
-
 export const useUsersUserUsersIdGet = <TData = Schemas.UserRead>(
   variables: UsersUserUsersIdGetVariables,
   options?: Omit<
@@ -942,71 +1172,16 @@ export const useUsersDeleteUserUsersIdDelete = (
   });
 };
 
-export type TokenRequestBody = {
-  token:string
-}
-
-export type TokenRequestError = Fetcher.ErrorWrapper<undefined>;
-
-export type TokenResponse = {
-  id: string,
-  email: string,
-  is_active: boolean,
-  is_superuser: boolean,
-  is_verified: boolean,
-}
-
-export type TokenVariables = {
-  body: TokenRequestBody
-} & OpenApIContext['fetcherOptions'];
-
-export const fetchToken = (
-  variables: TokenVariables,
-  signal?: AbortSignal,
-  ) => openApIFetch<
-  TokenResponse,
-  TokenRequestError,
-  TokenRequestBody,
-  {},
-  {},
-  {}
-  >({method:'post',url:'/auth/verify',...variables,signal})
-
-export const useToken = <TData = TokenResponse> (
-  variables: TokenVariables,
-  options?: Omit<
-    reactQuery.UseQueryOptions<
-      TokenResponse,
-      TokenRequestError,
-      TData
-    >,
-    'queryKey' | 'queryFn' | 'initialData'
-  >
-) => {
-  const {fetcherOptions, queryKeyFn, queryOptions} = useOpenApIContext(options)
-  return reactQuery.useQuery<
-  TokenResponse,
-  TokenRequestError,
-  TData
->({
-  queryFn: ({ signal }) =>
-    fetchToken({ ...fetcherOptions, ...variables }, signal),
-  queryKey: queryKeyFn({
-    operationId: 'Verify',
-    path: '/auth/verify',
-    variables,
-  }),
-  ...options,
-  ...queryOptions,
-});
-}
-
-
 export type QueryOperation =
   | {
       path: "/countries";
       operationId: "countriesGetAllCountriesGet";
       variables: CountriesGetAllCountriesGetVariables;
+    }
+  | {
+      path: "/favourites";
+      operationId: "getFavouritesFavouritesGet";
+      variables: GetFavouritesFavouritesGetVariables;
     }
   | {
       path: "/countries_recipes";
@@ -1017,6 +1192,11 @@ export type QueryOperation =
       path: "/categories_recipes";
       operationId: "categoriesRecipesGetAllCategoriesRecipesGet";
       variables: CategoriesRecipesGetAllCategoriesRecipesGetVariables;
+    }
+  | {
+      path: "/search_recipes_by_description";
+      operationId: "searchRecipesByDescriptionSearchRecipesByDescriptionGet";
+      variables: SearchRecipesByDescriptionSearchRecipesByDescriptionGetVariables;
     }
   | {
       path: "/categories";
@@ -1032,11 +1212,6 @@ export type QueryOperation =
       path: "/users/me";
       operationId: "usersCurrentUserUsersMeGet";
       variables: UsersCurrentUserUsersMeGetVariables;
-    }
-  | {
-      path: '/auth/verify';
-      operationId: 'Verify';
-      variables: TokenVariables;
     }
   | {
       path: "/users/{id}";

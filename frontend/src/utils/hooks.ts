@@ -29,7 +29,7 @@ export function logIn(values){
 export function useVerifiedUser(redirectOnFail = '/login') {
     const router = useRouter()
     const [curUser,setCurUser] = useState<User | null>(null)
-    const user = useStore($user)
+    const user = useUnit($user)
     const {data, isLoading, error} = useUsersCurrentUserUsersMeGet({})
     console.log(data)
 
@@ -52,7 +52,6 @@ export function useVerifiedUser(redirectOnFail = '/login') {
     return({loading: isLoading, curUser, data})
 }
 
-export function useLike(recipeId:string){
-    
-    return({isLoading, curUser, data})
+export async function useFavourites(){
+    return await fetch('localhost:5000/api/v1/search_recipes_by_description/description_query')
 }

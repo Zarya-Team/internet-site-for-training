@@ -17,8 +17,8 @@ export default function Header(){
         </div>
       </div>
       <div className='flex justify-between h-[50px] w-full'>
-          <Link href='#' className='text-black flex justify-center items-center text-[24px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Избранное</Link>
-          <Link href='#' className='text-black flex justify-center items-center text-[24px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Поиск</Link>
+          <Link href='/favourites' className='text-black flex justify-center items-center text-[24px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Избранное</Link>
+          <Link href='/search' className='text-black flex justify-center items-center text-[24px] h-[45px] text-center w-[33%] border-r border-black' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Поиск</Link>
           <Link href='/about' className='text-black flex justify-center items-center text-[24px] h-[45px] text-center w-[33%]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>О нас</Link>
         </div> 
       </div>
@@ -33,8 +33,8 @@ export default function Header(){
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="black"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
             </div>
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#F1E1D0] w-52">
-              <li><Link href='#' className='text-black flex text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Избранное</Link></li>
-              <li><Link href='#' className='text-black flex  text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Поиск</Link></li>
+              <li><Link href='/favourites' className='text-black flex text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Избранное</Link></li>
+              <li><Link href='/search' className='text-black flex  text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>Поиск</Link></li>
               <li><Link href="/login" className='text-black  flex text-[14px]' style={{fontFamily:'IBM Plex Serif', fontWeight:'400'}}>{curUser?.email ?? 'Вход'}</Link></li>
             </ul>
           </div>
